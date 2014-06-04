@@ -1,18 +1,21 @@
 <div ng-include="'partials/navbar'"></div>
 
 <div class="jumbotron">
-  <h1>'Allo, 'Allo <span ng-show="currentUser">{{ currentUser.name }}</span>!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!</a></p>
+  <h3>Morning Ninja, enter your zip code<span ng-show="currentUser"> | {{ currentUser.name }}</span>!</h3>
+  <form ng-submit="submitZip()">
+    <input type="text" ng-model="zipCode.userZip" placeholder="enter zip code"/><br>
+    {{zipCode.userZip}}<br>
+    <input type="submit" class="btn btn-success" value="Enter Zip Code"/>
+  </form>
 </div>
 
 <div class="row marketing">
+  <div>
+    {{latAndLong}}
+  </div>
   <div ng-repeat="thing in awesomeThings">
-      <h4>{{thing.name}}</h4>
-      <p>{{thing.info}}</p>
+      <!-- <h4>{{thing.name}}</h4>
+      <p>{{thing.info}}</p> -->
   </div>
 </div>
 
