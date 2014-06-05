@@ -3,19 +3,27 @@
 angular.module('morningNinjaApp')
   .controller('MainCtrl', function ($scope, $http) {
 
-    $http.get('/api/awesomeThings').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
-    });
+    // $http.get('/api/awesomeThings').success(function(awesomeThings) {
+    //   $scope.awesomeThings = awesomeThings;
+    // });
 
-    $scope.latAndLong = [];
+    $scope.zipArr = [];
 
     $scope.zipCode = {userZip: ''};
 
     $scope.submitZip = function() {
-      $scope.latAndLong.push($scope.zipCode);
+      $scope.zipArr.push($scope.zipCode);
 
-      $http.post('/api/awesomeThings', $scope.zipCode).success(function(err, awesomeThings) {
-        $scope.awesomeThings = awesomeThings;
+      $http.post('/zips/geocode', $scope.zipCode).success(function(data) {
+        // $scope.awesomeThings = awesomeThings;
+        $scope.retData = data;
+
+        console.log('submitted zip:', $scope.zipArr[$scope.zipArr.length-1], ' returns ',data);
+
+        $http.post('/weatherData/getWeatherData', $scope.retData).success(function(wData) {
+          console.log('returned from forecast: ', wData);
+          $scope.wData = wData;
+        });
       });
 
       $scope.zipCode = {userZip: ''};

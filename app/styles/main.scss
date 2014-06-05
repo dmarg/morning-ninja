@@ -67,6 +67,14 @@ body {
     margin-top: 28px;
 }
 
+.jumbotron p {
+    font-size: 80%;
+}
+
+.form-help {
+    color: #FF7878;
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .container {
@@ -89,3 +97,4 @@ body {
         border-bottom: 0;
     }
 }
+
