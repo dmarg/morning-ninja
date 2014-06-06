@@ -24,9 +24,10 @@ angular.module('morningNinjaApp')
           console.log('returned from forecast: ', wData);
           $scope.wData = angular.fromJson(wData);
 
-          $http.post('/twilio/sendSMS', $scope.wData).success(function(sms) {
-            console.log('twilio: ', sms);
-          });
+          //Functionality to send text message on submit
+          // $http.post('/twilio/sendSMS', $scope.wData).success(function(sms) {
+          //   console.log('twilio: ', sms);
+          // });
 
         });
       });

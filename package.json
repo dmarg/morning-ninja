@@ -19,7 +19,8 @@
     "ejs": "~0.8.4",
     "node-geocoder": "^2.4.1",
     "request": "^2.36.0",
-    "twilio": "^1.6.0"
+    "twilio": "^1.6.0",
+    "moment": "^2.6.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
