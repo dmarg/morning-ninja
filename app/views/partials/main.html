@@ -4,7 +4,7 @@
   <h3>Morning Ninja, enter your zip code<span ng-show="currentUser"> | {{ currentUser.name }}</span>!</h3>
   <form name="zipcodeForm" ng-submit="submitZip(zipcodeForm.$valid)" novalidate>
     <input type="text" ng-model="zipCode.userZip" ng-pattern="/^[0-9]{5}$/g" placeholder="enter zip code" required/><br>
-    <p ng-show="zipcodeForm.$invalid && !zipcodeForm.$pristine" class="form-help">zip code may only be numbers and 5 digits in length</p><br>
+    <p ng-show="zipcodeForm.$invalid && !zipcodeForm.$pristine" class="form-help">Please enter a valid 5 digit zip code.</p><br>
     <button type="submit" class="btn btn-success" ng-disabled="zipcodeForm.$invalid">Enter Zipcode</button>
   </form>
 </div>
@@ -15,12 +15,8 @@
     <br><br>
     {{retData}}
     <br><br>
-    {{wData.daily.summary}}<br>
-    {{wData.currently.humidity}}
-  </div>
-  <div ng-repeat="thing in awesomeThings">
-      <!-- <h4>{{thing.name}}</h4>
-      <p>{{thing.info}}</p> -->
+    {{wData.daily.data[0].summary}}<br>
+    {{wData.hourly.summary}}
   </div>
 </div>
 

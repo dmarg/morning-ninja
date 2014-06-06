@@ -22,7 +22,12 @@ angular.module('morningNinjaApp')
 
         $http.post('/weatherData/getWeatherData', $scope.retData).success(function(wData) {
           console.log('returned from forecast: ', wData);
-          $scope.wData = wData;
+          $scope.wData = angular.fromJson(wData);
+
+          $http.post('/twilio/sendSMS', $scope.wData).success(function(sms) {
+            console.log('twilio: ', sms);
+          });
+
         });
       });
 
