@@ -20,16 +20,28 @@ angular.module('morningNinjaApp')
 
         console.log('submitted zip:', $scope.zipArr[$scope.zipArr.length-1], ' returns ',data);
 
-        $http.post('/weatherData/getWeatherData', $scope.retData).success(function(wData) {
-          console.log('returned from forecast: ', wData);
-          $scope.wData = angular.fromJson(wData);
+        if (data.hasOwnProperty('error')) {
+          $scope.zipError = true;
+        } else {
+          $http.post('/weatherData/getWeatherData', $scope.retData).success(function(wData) {
+            console.log('returned from forecast: ', wData);
+            $scope.wData = angular.fromJson(wData);
 
-          //Functionality to send text message on submit
-          // $http.post('/twilio/sendSMS', $scope.wData).success(function(sms) {
-          //   console.log('twilio: ', sms);
-          // });
+            var maxTemp = Math.ceil(wData.daily.data[0].temperatureMax);
+            var minTemp = Math.floor(wData.daily.data[0].temperatureMin);
+            var dailySummary = wData.daily.data[0].summary;
 
-        });
+
+            $scope.weatherMessage = {weather: dailySummary + ' Daily Temps: H:' + maxTemp + ' / L:' + minTemp + '.'};
+
+            // Functionality to send text message on submit
+            // $http.post('/twilio/sendSMS', $scope.weatherMessage).success(function(sms) {
+            //   console.log('twilio: ', sms);
+            // });
+
+          });
+        }
+
       });
 
       $scope.zipCode = {userZip: ''};
