@@ -35,9 +35,9 @@ angular.module('morningNinjaApp')
             $scope.weatherMessage = {weather: dailySummary + ' Daily Temps: H:' + maxTemp + ' / L:' + minTemp + '.'};
 
             // Functionality to send text message on submit
-            // $http.post('/twilio/sendSMS', $scope.weatherMessage).success(function(sms) {
-            //   console.log('twilio: ', sms);
-            // });
+            $http.post('/twilio/sendSMS', $scope.weatherMessage).success(function(sms) {
+              console.log('twilio: ', sms);
+            });
 
           });
         }

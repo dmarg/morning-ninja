@@ -2,6 +2,12 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 
 @import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
 
+
+
+// =====================================
+// Additional Styling Updates
+// =====================================
+
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
@@ -38,9 +44,9 @@ body {
 
 /* Custom page footer */
 .footer {
-    padding-top: 19px;
-    color: #777;
-    border-top: 1px solid #e5e5e5;
+    margin: 0 auto;
+    padding-top: 20px;
+    color: #2C3E50;
 }
 
 .container-narrow > hr {
@@ -73,6 +79,36 @@ body {
 
 .form-help {
     color: #FF7878;
+}
+
+.form-control {
+  border: 2px solid #bdc3c7;
+  color: #34495e;
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.467;
+  padding: 8px 12px;
+  height: 42px;
+  -webkit-appearance: none;
+  border-radius: 6px;
+  box-shadow: none;
+  transition: border .25s linear, color .25s linear, background-color .25s linear;
+}
+
+.form-group.focus .form-control,
+.form-control:focus {
+  border-color: #34495E;
+  border-width: 3px;
+  outline: 0;
+  box-shadow: none;
+}
+
+h3 {
+  color: #F1C40F;
+}
+
+.signup-page {
+  margin-top: 15px;
 }
 
 /* Responsive: Portrait tablets and up */

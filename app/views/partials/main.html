@@ -1,10 +1,41 @@
 <div ng-include="'partials/navbar'"></div>
 
-<div class="jumbotron">
+<div id="headerwrap">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 main-page">
+        <h3>Morning Ninja, enter your zip code<span ng-show="currentUser"> | {{ currentUser.name }}</span>!</h3>
+        <form name="zipcodeForm" ng-submit="submitZip(zipcodeForm.$valid)" novalidate>
+          <input type="text" class="form-control" ng-model="zipCode.userZip" ng-pattern="/^[0-9]{5}$/g" placeholder="enter zip code" required/>
+          <p ng-show="zipcodeForm.$invalid && !zipcodeForm.$pristine" class="form-help">Please enter a valid 5 digit zip code.</p>
+          <button type="submit" class="btn btn-inverse" ng-disabled="zipcodeForm.$invalid">Enter Zipcode</button>
+        </form>
+      </div><!-- /col-lg-6 -->
+      <div class="col-lg-12">
+        <div>
+          {{zipArr}}
+          <br><br>
+          {{retData}}
+          <br><br>
+          {{weatherMessage.weather}}<br>
+        </div>
+      </div><!-- /col-lg-6 -->
+    </div><!-- /row -->
+  </div><!-- /container -->
+</div>
+
+<div class="footer col-lg-12">
+  <p>♥ from team Danger</p>
+</div>
+
+
+<!--   ORIGINAL PAGE
+  <div class="jumbotron">
   <h3>Morning Ninja, enter your zip code<span ng-show="currentUser"> | {{ currentUser.name }}</span>!</h3>
   <form name="zipcodeForm" ng-submit="submitZip(zipcodeForm.$valid)" novalidate>
     <input type="text" ng-model="zipCode.userZip" ng-pattern="/^[0-9]{5}$/g" placeholder="enter zip code" required/><br>
-    <p ng-show="zipcodeForm.$invalid && !zipcodeForm.$pristine" class="form-help">Please enter a valid 5 digit zip code.</p><br>
+    <p ng-show="zipcodeForm.$invalid && !zipcodeForm.$pristine" class="form-help">Please enter a valid 5 digit zip code.</p>
+    <br>
     <button type="submit" class="btn btn-success" ng-disabled="zipcodeForm.$invalid">Enter Zipcode</button>
   </form>
 </div>
@@ -21,4 +52,4 @@
 
 <div class="footer">
   <p>♥ from the Danger Team</p>
-</div>
+</div> -->
