@@ -1,16 +1,16 @@
 <div class="navbar navbar-default navbar-fixed-top" ng-controller="NavbarCtrl">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#"><b>Morning Ninja</b></a>
+      <a class="navbar-brand" href="#"><b>Morning Ninja</b><span ng-show="currentUser"> | {{ currentUser.name }}</span></a>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav nav-pills pull-right">
-        <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
+        <button class="btn btn-warning" ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
             <a ng-href="{{item.link}}">{{item.title}}</a>
-        </li>
-        <li ng-hide="currentUser" ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li>
-        <li ng-hide="currentUser" ng-class="{active: isActive('/signup')}"><a href="/signup">Sign up</a></li>
-        <li ng-show="currentUser" ng-class="{active: isActive('/logout')}"><a href="" ng-click="logout()">Logout</a></li>
+        </button>
+        <button class="btn btn-warning" ng-hide="currentUser" ng-class="{active: isActive('/login')}"><a href="/login">Login</a></button>
+        <button class="btn btn-warning" ng-hide="currentUser" ng-class="{active: isActive('/signup')}"><a href="/signup">Sign up</a></button>
+        <button class="btn btn-warning" ng-show="currentUser" ng-class="{active: isActive('/logout')}"><a href="" ng-click="logout()">Logout</a></button>
       </ul>
     </div>
   </div>
