@@ -1,7 +1,7 @@
 <div ng-include="'partials/navbar.html'"></div>
 
-<div class="row">
-  <div class="col-sm-12 signup-page">
+<div class="row page-body">
+  <div class="col-sm-12">
     <h1>Sign up</h1>
   </div>
   <div class="col-sm-12">
@@ -17,6 +17,41 @@
           A name is required
         </p>
       </div>
+
+      <div class="form-group" ng-class="{ 'has-success': form.zipcode.$valid && submitted,
+                                          'has-error': form.zipcode.$invalid && submitted }">
+        <label>Zip Code</label>
+
+        <input type="text" name="zipcode" class="form-control" ng-pattern="zipcodePattern" ng-model="user.zipcode"
+               required/>
+        <p class="help-block" ng-show="(form.zipcode.$error.pattern || form.zipcode.$error.required) && submitted">
+          A valid 5 digit zip code is required.
+        </p>
+      </div>
+
+
+      <div class="form-group" ng-class="{ 'has-success': form.cellPhone.$valid && submitted,
+                                          'has-error': form.cellPhone.$invalid && submitted }">
+        <label>Cell Phone</label>
+
+        <input type="text" name="cellPhone" class="form-control" ng-pattern="cellPhonePattern" ng-model="user.cellPhone"
+               required/>
+
+        <!-- UI-MASK functionality not properly working with validator -->
+        <!-- <input type="text" name="mask" ui-mask="(999) 999-9999" class="form-control ng-dirty ng-valid-mask" ng-model="user.cellPhone" required/> -->
+
+        <p class="help-block" ng-show="(form.cellPhone.$error.pattern || form.cellPhone.$error.required) && submitted">
+          A valid 10 digit US cell phone is required.
+        </p>
+      </div>
+
+      <div class="form-group" ng-class="{ 'has-success': form.morningTime.$valid && submitted,
+                                          'has-error': form.morningTime.$invalid && submitted }">
+        <label>Time to receive weather each morning</label>
+        <timepicker class="time-picker" ng-model="user.morningTime" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian" readonly-input="true" mousewheel="false"></timepicker>
+
+      </div>
+
 
       <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
                                           'has-error': form.email.$invalid && submitted }">
@@ -41,19 +76,19 @@
         <label>Password</label>
 
         <input type="password" name="password" class="form-control" ng-model="user.password"
-               ng-minlength="3"
+               ng-minlength="4"
                required
                mongoose-error/>
         <p class="help-block"
            ng-show="(form.password.$error.minlength || form.password.$error.required) && submitted">
-          Password must be at least 3 characters.
+          Password must be at least 4 characters.
         </p>
         <p class="help-block" ng-show="form.password.$error.mongoose">
           {{ errors.password }}
         </p>
       </div>
 
-      <button class="btn btn-lg btn-primary" type="submit">Sign up</button>
+      <button class="btn btn-lg btn-warning" type="submit">Sign up</button>
     </form>
   </div>
 </div>

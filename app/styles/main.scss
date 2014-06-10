@@ -20,11 +20,11 @@ body {
     padding-top: 20px;
     padding-bottom: 20px;
 
-    background-color: #3498db;
+    background-color: #FFFBED;
     font-family: 'Lato', sans-serif;
     font-weight: 300;
     font-size: 16px;
-    color: #555;
+    color: #223059;
 
     -webkit-font-smoothing: antialiased;
     -webkit-overflow-scrolling: touch;
@@ -62,29 +62,6 @@ body {
     margin: 30px 0;
 }
 
-/* Main marketing message and sign up button */
-.jumbotron {
-    text-align: center;
-    border-bottom: 1px solid #e5e5e5;
-}
-
-.jumbotron .btn {
-    font-size: 16px;
-    padding: 10px 12px;
-}
-
-/* Supporting marketing content */
-.marketing {
-    margin: 40px 0;
-}
-
-.marketing p + h4 {
-    margin-top: 28px;
-}
-
-.jumbotron p {
-    font-size: 80%;
-}
 
 .form-help {
     color: #FF7878;
@@ -113,8 +90,8 @@ body {
 }
 
 
-.signup-page {
-  margin-top: 15px;
+.page-body {
+  margin-top: 25px;
 }
 
 .main-page {
@@ -122,26 +99,31 @@ body {
 }
 
 
-/* Titles */
+/* Titles and Labels */
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Lato', sans-serif;
     font-weight: 300;
-    color: #333;
+    color: #223059;
 }
 
 h1 {
     font-size: 40px;
+    font-weight: bold;
 }
 
 h3 {
-    color: #F1C40F;
     font-weight: bold;
 }
 
 h4 {
-    color: #F1C40F;
     font-weight: 400;
     font-size: 20px;
+}
+
+label {
+  font-weight: bold;
+  color: #223059;
+  margin-top: 10px;
 }
 
 
@@ -159,7 +141,8 @@ p {
 
 /* Links */
 a {
-    color: #3498db;
+    color: #F2C335;
+    font-weight: bold;
     word-wrap: break-word;
 
     -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
@@ -171,7 +154,7 @@ a {
 
 a:hover,
 a:focus {
-    color: #7b7b7b;
+    color: #F29727;
     text-decoration: none;
     outline: 0;
 }
@@ -194,8 +177,15 @@ a:after {
     padding: 0;
 }
 
+
+/* Navbar */
+
+.navbar-default a.navbar-brand {
+color: #FFFBED;
+}
+
 .navbar-default {
-    background-color: #3498db;
+    background-color: #223059;
     border-color: transparent;
 }
 
@@ -207,6 +197,13 @@ a:after {
     color: white;
 }
 
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #F29727;
+  background-color: transparent;
+}
+
+
 /* Helpers */
 
 .mt {
@@ -217,7 +214,7 @@ a:after {
 .form-control {
     height: 42px;
     font-size: 18px;
-    width: 280px;
+    width: 300px;
     margin: 10px 0px;
 }
 
@@ -230,7 +227,7 @@ i {
 /* HeaderWrap */
 #headerwrap {
     /* background: url(../img/bg01.jpg) no-repeat center top; */
-    background-color: #3498db;
+    background-color: #FFFBED;
     margin-top: -20px;
     padding-top:100px;
     background-attachment: relative;
@@ -259,13 +256,109 @@ i {
 }
 
 
+/*List Styling for Nav*/
+ul {
+  list-style-type: none;
+
+  li {
+    display: inline;
+    margin-left: 5px;
+    padding-left: 5px;
+  }
+}
+
+/*Input Box for Sign Up*/
+.has-error .form-control:focus {
+  border-color: #FF6363;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
+}
+
+.has-error .form-control{
+  color: #FF6363;
+  border-color: #FF6363;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.has-error .help-block {
+  color: #FF6363;
+  font-weight: bold;
+}
+
+.has-success .form-control {
+  border-color: #2ecc71;
+  color: #2ecc71;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.has-success .form-control:focus {
+  border-color: #2ecc71;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #67b168;
+}
+
+.help-block {
+  padding-left: 0px;
+}
+
+li.active a {
+  color: #F29727;
+}
+
+/* Footer */
+.footer {
+  color: #F2C335;
+}
+
+/* Time Pciker input width */
+.time-picker input {
+  max-width: 65px;
+}
 
 
+/* Buttons */
+.btn-warning {
+  color: white;
+  background-color: #F2C335;
+  border-color: #F29727;
+}
 
+.btn-warning:hover,
+.btn-warning:focus,
+.btn-warning:active,
+.btn-warning.active,
+.open > .btn-warning.dropdown-toggle {
+  color: white;
+  background-color: #F29727;
+  border-color: #D96704;
+}
 
+.btn-default {
+  color: white;
+  background-color: #F2C335;
+  border-color: #F29727;
+}
 
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.open > .btn-default.dropdown-toggle {
+  color: white;
+  background-color: #F29727;
+  border-color: #D96704;
+}
 
+/* Collapsable Navbar button */
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #F2C335;
+}
 
+.navbar-default .navbar-toggle {
+border-color: #FFFBED;
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+background-color: #FFFBED;
+}
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {

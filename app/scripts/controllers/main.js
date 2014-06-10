@@ -7,6 +7,8 @@ angular.module('morningNinjaApp')
     //   $scope.awesomeThings = awesomeThings;
     // });
 
+    $scope.zipcodePattern = /^[0-9]{5}$/g;
+
     $scope.zipArr = [];
 
     $scope.zipCode = {userZip: ''};

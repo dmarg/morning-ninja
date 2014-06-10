@@ -5,12 +5,30 @@ angular.module('morningNinjaApp')
     $scope.user = {};
     $scope.errors = {};
 
+    //Patterns for text field inputs
+    $scope.zipcodePattern = /^[0-9]{5}$/g;
+    $scope.cellPhonePattern = /^[0-9]{10}$/g;
+
+    //timepicker
+    $scope.user.morningTime = new Date('September 07, 2014 07:30:00');
+
+    $scope.hstep = 1;
+    $scope.mstep = 15;
+
+    $scope.ismeridian = true;
+
+
     $scope.register = function(form) {
       $scope.submitted = true;
-  
+
+      console.log($scope.user);
+
       if(form.$valid) {
         Auth.createUser({
           name: $scope.user.name,
+          zipcode: $scope.user.zipcode,
+          cellPhone: $scope.user.cellPhone,
+          morningTime: $scope.user.morningTime,
           email: $scope.user.email,
           password: $scope.user.password
         })

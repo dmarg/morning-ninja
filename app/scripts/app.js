@@ -4,7 +4,9 @@ angular.module('morningNinjaApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'ui.mask',
+  'ui.bootstrap'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
@@ -28,9 +30,9 @@ angular.module('morningNinjaApp', [
       .otherwise({
         redirectTo: '/'
       });
-      
+
     $locationProvider.html5Mode(true);
-      
+
     // Intercept 401s and redirect you to login
     $httpProvider.interceptors.push(['$q', '$location', function($q, $location) {
       return {
@@ -50,7 +52,7 @@ angular.module('morningNinjaApp', [
 
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$routeChangeStart', function (event, next) {
-      
+
       if (next.authenticate && !Auth.isLoggedIn()) {
         $location.path('/login');
       }
