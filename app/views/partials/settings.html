@@ -2,7 +2,107 @@
 
 <div class="page-body">
   <div class="row">
-    <div class="col-sm-12">
+
+  <tabset class="page-body">
+
+    <tab heading="Change Time" ng-click="clearTab(); clearMessage()">
+      <div class="col-sm-12">
+        <form class="form" name="formTime" ng-submit="changeMorningTime(formTime)" novalidate>
+
+          <div class="form-group" ng-class="{ 'has-success': formTime.newMorningTime.$valid && submitted,
+                                          'has-error': formTime.newMorningTime.$invalid && submitted }">
+            <br><label>update time to receive the weather each morning</label>
+            <timepicker class="time-picker" ng-model="user.newLocalTime" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian" readonly-input="false" mousewheel="false"></timepicker>
+
+          </div>
+
+          <p class="help-block"> {{ message }} </p>
+
+          <button class="btn btn-lg btn-warning" type="submit">Save New Time</button>
+        </form>
+      </div>
+    </tab>
+
+    <tab heading="Change Zip Code" ng-click="clearTab(); clearMessage()">
+      <div class="col-sm-12">
+        <form class="form" name="formZip" ng-submit="changeZipCode(formZip)" novalidate>
+          <div class="form-group" ng-class="{ 'has-success': formZip.zipcode.$valid && submitted,
+                                                'has-error': formZip.zipcode.$invalid && submitted }">
+            <br><label>Update Zip Code</label>
+
+            <input type="text" name="zipcode" class="form-control" ng-pattern="zipcodePattern" ng-model="user.zipcode"
+                   required/>
+            <p class="help-block" ng-show="(formZip.zipcode.$error.pattern || formZip.zipcode.$error.required) && submitted">
+              A valid 5 digit zip code is required.
+            </p>
+          </div>
+
+          <p class="help-block"> {{ message }} </p>
+
+          <button class="btn btn-lg btn-warning" type="submit">Save Change</button>
+        </form>
+      </div>
+    </tab>
+
+    <tab heading="Change Password" ng-click="clearMessage()">
+      <div class="col-sm-12">
+        <form class="form" name="formPass" ng-submit="changePassword(formPass)" novalidate>
+
+          <div class="form-group">
+            <br><label>Current Password</label>
+
+            <input type="password" name="password" class="form-control" ng-model="user.oldPassword"
+                   mongoose-error/>
+            <p class="help-block" ng-show="formPass.password.$error.mongoose">
+                {{ errors.other }}
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label>New Password</label>
+
+            <input type="password" name="newPassword" class="form-control" ng-model="user.newPassword"
+                   ng-minlength="4"
+                   required/>
+            <p class="help-block"
+               ng-show="(formPass.newPassword.$error.minlength || formPass.newPassword.$error.required) && (formPass.newPassword.$dirty || submitted)">
+              Password must be at least 4 characters.
+            </p>
+          </div>
+
+          <p class="help-block"> {{ message }} </p>
+
+          <button class="btn btn-lg btn-warning" type="submit">Save changes</button>
+        </form>
+      </div>
+    </tab>
+
+    <tab heading="Delete Account" ng-click="clearTab(); clearMessage()">
+      <div class="col-sm-12">
+
+        <form class="form" name="formDelete" ng-submit="deleteUser(formDelete)" novalidate>
+
+          <div class="form-group">
+            <br><label>Delete Account</label>
+            <p>If you really want to stop Morning Ninja then please enter the following code and click delete. </p>
+            <p>CODE FOR DELETION: {{user.deleteKey}}</p>
+            <input type="deleteKey" name="deleteKey" class="form-control" ng-model="user.deleteKeyConfirm" required/>
+            <p class="help-block" ng-show="formDelete.">
+                {{ errors.delete }}
+            </p>
+          </div>
+
+          <p class="help-block"> {{ message }} </p>
+          <p class="help-block"> {{ errors.message }} </p>
+
+          <button class="btn btn-lg btn-danger" type="submit">DELETE</button>
+        </form>
+      </div>
+    </tab>
+
+  </tabset>
+
+    <!-- <div class="col-sm-12">
       <h1>Change Password</h1>
     </div>
     <div class="col-sm-12">
@@ -34,6 +134,8 @@
 
         <button class="btn btn-lg btn-warning" type="submit">Save changes</button>
       </form>
-    </div>
+    </div> -->
+
   </div>
+
 </div>

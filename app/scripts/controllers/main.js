@@ -3,27 +3,30 @@
 angular.module('morningNinjaApp')
   .controller('MainCtrl', function ($scope, $http) {
 
-    // $http.get('/api/awesomeThings').success(function(awesomeThings) {
-    //   $scope.awesomeThings = awesomeThings;
-    // });
 
-    $scope.zipcodePattern = /^[0-9]{5}$/g;
+    $scope.user = {};
 
-    $scope.zipArr = [];
+    $http.get('/api/users/me').success(function(user) {
+      $scope.user._id = user._id;
+      $scope.user.email = user.email;
+      $scope.user.cellPhone = user.cellPhone;
+      $scope.user.zipcode = user.zipcode;
+      $scope.user.morningTime = user.morningTime;
+      $scope.user.firstName = user.name.split(' ')[0];
 
-    $scope.zipCode = {zipcode: ''};
+      $scope.user.newLocalTime = new Date(user.localTime);
+
+    });
+
 
     $scope.submitZip = function() {
-      $scope.zipArr.push($scope.zipCode);
 
-      $http.post('/zips/geocode', $scope.zipCode).success(function(data) {
-        // $scope.awesomeThings = awesomeThings;
+      $http.post('/zips/geocode', $scope.user).success(function(data) {
+
         $scope.retData = data;
 
-        console.log('submitted zip:', $scope.zipArr[$scope.zipArr.length-1], ' returns ',data);
-
         if (data.hasOwnProperty('error')) {
-          $scope.zipError = true;
+          console.log(data);
         } else {
           $http.post('/weatherData/getWeatherData', $scope.retData).success(function(wData) {
             console.log('returned from forecast: ', wData);
@@ -34,18 +37,20 @@ angular.module('morningNinjaApp')
             var dailySummary = wData.daily.data[0].summary;
 
 
-            $scope.weatherMessage = {weather: dailySummary + ' Daily Temps: H:' + maxTemp + ' / L:' + minTemp + '.'};
+            $scope.weatherMessage = {
+                weather: dailySummary + ' Daily Temps: H:' + maxTemp + ' / L:' + minTemp + '.',
+                cellPhone: $scope.user.cellPhone
+              };
 
             // Functionality to send text message on submit
-            // $http.post('/twilio/sendSMS', $scope.weatherMessage).success(function(sms) {
-            //   console.log('twilio: ', sms);
-            // });
+            $http.post('/twilio/sendSMS', $scope.weatherMessage).success(function(sms) {
+              console.log('twilio: ', sms);
+            });
 
           });
         }
 
       });
 
-      $scope.zipCode = {userZip: ''};
     };
   });

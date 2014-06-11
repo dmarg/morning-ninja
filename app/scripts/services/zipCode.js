@@ -12,9 +12,5 @@ angular.module('morningNinjaApp')
         return $http.post('/zips/geocode', scope);
       },
 
-      changeZip: function(scope) {
-        // change zip code function
-      }
-
     };
   });

@@ -42,6 +42,7 @@ angular.module('morningNinjaApp')
           zipcode: $scope.user.zipcode,
           cellPhone: $scope.user.cellPhone,
           morningTime: $scope.user.morningTime.getUTCHours() + ':' + $scope.user.morningTime.getUTCMinutes() + ':00',
+          localTime: $scope.user.morningTime,
           email: $scope.user.email,
           password: $scope.user.password
         })
