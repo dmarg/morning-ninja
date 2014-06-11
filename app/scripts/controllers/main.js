@@ -11,7 +11,7 @@ angular.module('morningNinjaApp')
 
     $scope.zipArr = [];
 
-    $scope.zipCode = {userZip: ''};
+    $scope.zipCode = {zipcode: ''};
 
     $scope.submitZip = function() {
       $scope.zipArr.push($scope.zipCode);
@@ -37,9 +37,9 @@ angular.module('morningNinjaApp')
             $scope.weatherMessage = {weather: dailySummary + ' Daily Temps: H:' + maxTemp + ' / L:' + minTemp + '.'};
 
             // Functionality to send text message on submit
-            $http.post('/twilio/sendSMS', $scope.weatherMessage).success(function(sms) {
-              console.log('twilio: ', sms);
-            });
+            // $http.post('/twilio/sendSMS', $scope.weatherMessage).success(function(sms) {
+            //   console.log('twilio: ', sms);
+            // });
 
           });
         }

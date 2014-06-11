@@ -48,7 +48,7 @@
       <div class="form-group" ng-class="{ 'has-success': form.morningTime.$valid && submitted,
                                           'has-error': form.morningTime.$invalid && submitted }">
         <label>Time to receive weather each morning</label>
-        <timepicker class="time-picker" ng-model="user.morningTime" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian" readonly-input="true" mousewheel="false"></timepicker>
+        <timepicker class="time-picker" ng-model="user.morningTime" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian" readonly-input="false" mousewheel="false"></timepicker>
 
       </div>
 

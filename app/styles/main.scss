@@ -63,6 +63,7 @@ body {
 }
 
 
+/* Form Styling */
 .form-help {
     color: #FF7878;
 }
@@ -88,7 +89,6 @@ body {
   outline: 0;
   box-shadow: none;
 }
-
 
 .page-body {
   margin-top: 25px;
@@ -296,7 +296,8 @@ ul {
 }
 
 .help-block {
-  padding-left: 0px;
+  color: #223059;
+  font-weight: bold;
 }
 
 li.active a {
@@ -335,6 +336,7 @@ li.active a {
   color: white;
   background-color: #F2C335;
   border-color: #F29727;
+  margin-left: 5px;
 }
 
 .btn-default:hover,
@@ -345,6 +347,10 @@ li.active a {
   color: white;
   background-color: #F29727;
   border-color: #D96704;
+}
+
+.btn-link {
+  color: #223059;
 }
 
 /* Collapsable Navbar button */

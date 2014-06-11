@@ -4,11 +4,11 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12 main-page">
-        <h3>Welcome to Morning Ninja<span ng-show="currentUser"> | {{ currentUser.name }}</span>!</h3>
-        <h3>Personalized weather forecast to start your day off right!</h3>
+        <h3>Welcome to Morning Ninja<span ng-show="currentUser"> {{ currentUser.name }}</span>!</h3>
+        <h3>Start your day off right with weather forecast text messages!</h3>
         <a class="btn btn-lg btn-warning" href="/signup">Sign up</a>
         <form name="zipcodeForm" ng-submit="submitZip(zipcodeForm.$valid)" novalidate>
-          <input type="text" class="form-control" ng-model="zipCode.userZip" ng-pattern="zipcodePattern" placeholder="enter zip code" required/>
+          <input type="text" class="form-control" ng-model="zipCode.zipcode" ng-pattern="zipcodePattern" placeholder="enter zip code" required/>
           <p ng-show="zipcodeForm.$invalid && !zipcodeForm.$pristine" class="form-help">Please enter a valid 5 digit zip code.</p>
           <button type="submit" class="btn btn-inverse" ng-disabled="zipcodeForm.$invalid">Enter Zipcode</button>
         </form>
@@ -21,7 +21,7 @@
           <br><br>
           {{weatherMessage.weather}}<br>
         </div>
-      </div><!-- /col-lg-6 -->
+      </div> <!-- /col-lg-12 -->
     </div><!-- /row -->
   </div><!-- /container -->
 </div>
