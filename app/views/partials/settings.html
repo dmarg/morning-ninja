@@ -12,7 +12,7 @@
           <div class="form-group" ng-class="{ 'has-success': formTime.newMorningTime.$valid && submitted,
                                           'has-error': formTime.newMorningTime.$invalid && submitted }">
             <br><label>update time to receive the weather each morning</label>
-            <timepicker class="time-picker" ng-model="user.newLocalTime" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian" readonly-input="false" mousewheel="false"></timepicker>
+            <timepicker class="time-picker" ng-model="user.newLocalTime" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian" readonly-input="true" mousewheel="false"></timepicker>
 
           </div>
 
