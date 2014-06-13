@@ -10,7 +10,7 @@
       </div><!-- /col-lg-12 -->
       <div class="col-lg-12" ng-show="currentUser">
         <div>
-          <h3>Welcome to Morning Ninja {{ user.firstName }}!</h3>
+          <h3>Welcome to Morning Ninja {{ user.name.split(' ')[0] }}!</h3>
           <h2>You are currently receiving morning weather messages for the {{ user.zipcode }} zip code.</h2>
           <a class="btn btn-lg btn-warning" href="/settings">Change Settings</a>
         </div>

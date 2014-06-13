@@ -1,24 +1,13 @@
 'use strict';
 
 angular.module('morningNinjaApp')
-  .controller('SettingsCtrl', function ($scope, $http, $location, User, Auth, ZipCode) {
+  .controller('SettingsCtrl', function ($scope, $http, $location, $cookieStore, $rootScope, User, Auth, ZipCode) {
     $scope.errors = {};
     $scope.user = {};
 
     //Patterns for text field inputs
     $scope.zipcodePattern = /^[0-9]{5}$/g;
     $scope.cellPhonePattern = /^[0-9]{10}$/g;
-
-    $http.get('/api/users/me').success(function(user) {
-      $scope.user._id = user._id;
-      $scope.user.email = user.email;
-      $scope.user.cellPhone = user.cellPhone;
-      $scope.user.zipcode = user.zipcode;
-      $scope.user.morningTime = user.morningTime;
-
-      $scope.user.newLocalTime = new Date(user.localTime);
-
-    });
 
     // Delete Key Generator
     function deleteKey() {
@@ -31,9 +20,22 @@ angular.module('morningNinjaApp')
 
       return text;
     }
-    $scope.user.deleteKey = deleteKey();
-    $scope.user.deleteKeyConfirm = '';
-    $scope.user.deleteKeyinValid = true;
+
+    $http.get('/api/users/me').success(function(user) {
+      $scope.user._id = user._id;
+      $scope.user.email = user.email;
+      $scope.user.cellPhone = user.cellPhone;
+      $scope.user.zipcode = user.zipcode;
+      $scope.user.morningTime = user.morningTime;
+
+      $scope.user.newLocalTime = new Date(user.localTime);
+
+      $scope.user.deleteKey = deleteKey();
+      $scope.user.deleteKeyConfirm = '';
+      $scope.user.deleteKeyinValid = true;
+
+    });
+
 
 
     // $scope.user.newMorningTime = new Date('September 07, 2014 7:30:00');
@@ -63,6 +65,10 @@ angular.module('morningNinjaApp')
           if(data.hasOwnProperty('error')) {
             alert(data.error);
             $scope.user.zipcode = '';
+          } else {
+            $http.post('/weatherData/getWeatherData', data).success(function(wData) {
+              console.log('returned from forecast: ', wData);
+            });
           }
         });
       }
@@ -81,7 +87,7 @@ angular.module('morningNinjaApp')
           $scope.errors.other = 'Incorrect password';
         });
       }
-		};
+    };
 
     $scope.changeMorningTime = function(formTime) {
       $scope.submitted = true;
@@ -128,6 +134,10 @@ angular.module('morningNinjaApp')
           $http.delete('/api/users/delete/' + $scope.user._id).success(function(data) {
             $scope.message = 'DELETED!' + data;
           }).then( function() {
+            // Removes cookieStore then relocates to the main page.
+            $rootScope.currentUser = $cookieStore.get('user') || null;
+            $cookieStore.remove('user');
+
             $location.path('/');
           });
 

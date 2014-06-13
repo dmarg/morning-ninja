@@ -37,9 +37,6 @@
         <input type="text" name="cellPhone" class="form-control" ng-pattern="cellPhonePattern" ng-model="user.cellPhone"
                required/>
 
-        <!-- UI-MASK functionality not properly working with validator -->
-        <!-- <input type="text" name="mask" ui-mask="(999) 999-9999" class="form-control ng-dirty ng-valid-mask" ng-model="user.cellPhone" required/> -->
-
         <p class="help-block" ng-show="(form.cellPhone.$error.pattern || form.cellPhone.$error.required) && submitted">
           A valid 10 digit US cell phone is required.
         </p>

@@ -12,7 +12,7 @@ angular.module('morningNinjaApp')
       $scope.user.cellPhone = user.cellPhone;
       $scope.user.zipcode = user.zipcode;
       $scope.user.morningTime = user.morningTime;
-      $scope.user.firstName = user.name.split(' ')[0];
+      $scope.user.name = user.name;
 
       $scope.user.newLocalTime = new Date(user.localTime);
 
@@ -24,7 +24,8 @@ angular.module('morningNinjaApp')
       $http.post('/zips/geocode', $scope.user).success(function(data) {
 
         $scope.retData = data;
-
+        $scope.retData.fname = $scope.user.name.split(' ')[0];
+        // console.log($scope.retData);
         if (data.hasOwnProperty('error')) {
           console.log(data);
         } else {
@@ -32,19 +33,15 @@ angular.module('morningNinjaApp')
             console.log('returned from forecast: ', wData);
             $scope.wData = angular.fromJson(wData);
 
-            var maxTemp = Math.ceil(wData.daily.data[0].temperatureMax);
-            var minTemp = Math.floor(wData.daily.data[0].temperatureMin);
-            var dailySummary = wData.daily.data[0].summary;
-
-
-            $scope.weatherMessage = {
-                weather: dailySummary + ' Daily Temps: H:' + maxTemp + ' / L:' + minTemp + '.',
-                cellPhone: $scope.user.cellPhone
+            var weatherMessage = {
+                weather: wData,
+                cellPhone: $scope.user.cellPhone,
+                fname: $scope.retData.fname
               };
 
             // Functionality to send text message on submit
-            $http.post('/twilio/sendSMS', $scope.weatherMessage).success(function(sms) {
-              console.log('twilio: ', sms);
+            $http.post('/twilio/sendSMS', weatherMessage).success(function(sms) {
+              // console.log('twilio: ', sms);
             });
 
           });

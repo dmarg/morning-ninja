@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('morningNinjaApp')
-  .controller('SignupCtrl', function ($scope, Auth, $location, ZipCode) {
+  .controller('SignupCtrl', function ($scope, $http, Auth, $location, ZipCode) {
     $scope.user = {};
     $scope.errors = {};
 
@@ -26,6 +26,10 @@ angular.module('morningNinjaApp')
           if(data.hasOwnProperty('error')) {
             alert(data.error);
             $scope.user.zipcode = '';
+          } else {
+            $http.post('/weatherData/getWeatherData', data).success(function(wData) {
+            console.log('returned from forecast: ', wData);
+            });
           }
         });
       }
@@ -34,7 +38,7 @@ angular.module('morningNinjaApp')
     $scope.register = function(form) {
       $scope.submitted = true;
 
-      console.log($scope.user);
+      // console.log($scope.user);
 
       if(form.$valid) {
         Auth.createUser({
